@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone Keypad</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .phone-keypad {
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .keypad-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .key {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        background-color: #e0e0e0;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .key:hover {
+        background-color: #d0d0d0;
+      }
+      .key:active {
+        background-color: #c0c0c0;
+      }
+      #display {
+        width: 100%;
+        height: 40px;
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      #callButton {
+        width: 100%;
+        height: 40px;
+        font-size: 18px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      #callButton:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone-keypad">
+      <input type="text" id="display" readonly />
+      <div class="keypad-grid">
+        <button class="key">1</button>
+        <button class="key">2</button>
+        <button class="key">3</button>
+        <button class="key">4</button>
+        <button class="key">5</button>
+        <button class="key">6</button>
+        <button class="key">7</button>
+        <button class="key">8</button>
+        <button class="key">9</button>
+        <button class="key">*</button>
+        <button class="key">0</button>
+        <button class="key">#</button>
+      </div>
+      <button id="callButton">Call</button>
+    </div>
+
+    <script>
+      const display = document.getElementById("display");
+      const keys = document.querySelectorAll(".key");
+      const callButton = document.getElementById("callButton");
+
+      keys.forEach((key) => {
+        key.addEventListener("click", () => {
+          display.value += key.textContent;
+        });
+      });
+
+      callButton.addEventListener("click", () => {
+        if (display.value === "*123#") {
+          window.location.href = "index.html";
+        } else {
+          alert("Invalid USSD code. Please enter *123#");
+        }
+      });
+    </script>
+  </body>
+</html>
